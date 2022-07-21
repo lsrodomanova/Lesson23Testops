@@ -16,19 +16,9 @@ public class WebTestT3 {
     @DisplayName("Проверить смену региона")
     @Owner("allure8")
     void changeRegion() {
-        step("Открыть главную страницу сайта https://karelia.tele2.ru/", () -> {
-            open("https://karelia.tele2.ru/");
-            zoom(0.75);
-        });
-        step("Изменить регион в главном меню на тестовый регион", () -> {
-            $("#regionSearchOpener").click();
-            $(".text-field").setValue("Ростовская область");
-            $(".region-results").find(byText("Ростовская область")).click();
-
-        });
-        step("Проверить, что регион изменился", () -> {
-            $("#regionSearchOpener").shouldHave(text("Ростовская область"));
-        });
+        step("Открыть главную страницу сайта https://karelia.tele2.ru/");
+        step("Изменить регион в главном меню на тестовый регион");
+        step("Проверить, что регион изменился");
     }
 
     @Test
