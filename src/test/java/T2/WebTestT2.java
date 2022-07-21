@@ -47,4 +47,15 @@ public class WebTestT2 {
         step("Перейти по ссылке GooglePlay");
         step("Проверить, что открылся Google Play на странице приложения");
     }
+
+    @Test
+    @AllureId("11500")
+    @DisplayName("Проверить общие условия")
+    @Owner("allure8")
+    void checkConditions() {
+        step("Перейти в раздел Помощь");
+        step("Перейти в раздел Правовая информация");
+        step("Проверить Общие условия в списке документов");
+    }
+
 }
