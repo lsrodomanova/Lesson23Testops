@@ -1,27 +1,33 @@
-package T2;
+package tests;
 
 import io.qameta.allure.AllureId;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Tags;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
-public class WebTestT2 {
+public class WebTestT3 {
     @Test
     @AllureId("11420")
     @DisplayName("Проверить смену региона")
     @Owner("allure8")
     void changeRegion() {
-        step("Открыть главную страницу сайта https://karelia.tele2.ru/");
-        step("Изменить регион в главном меню на тестовый регион");
+        step("Открыть главную страницу сайта https://karelia.tele2.ru/", () -> {
+            open("https://karelia.tele2.ru/");
+            zoom(0.75);
+        });
+        step("Изменить регион в главном меню на тестовый регион", () -> {
+            $("#regionSearchOpener").click();
+            $(".text-field").setValue("Ростовская область");
+            $(".region-results").find(byText("Ростовская область")).click();
+
+        });
         step("Проверить, что регион изменился", () -> {
-            step("В верхнем меню отображается новый регион");
+            $("#regionSearchOpener").shouldHave(text("Ростовская область"));
         });
     }
 
